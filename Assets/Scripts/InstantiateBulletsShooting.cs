@@ -1,32 +1,29 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class InstantiateBulletsShooting : MonoBehaviour
 {
-    [SerializeField] private float _number;
-    [SerializeField] private float _timeWaitShooting;
-    [SerializeField] Bullet _prefab;
+    [SerializeField] private float _timeWaitShooting = 1f;
+    [SerializeField] private Bullet _prefab;
+    [SerializeField] private Transform _target;
 
-    private Transform _target;
-    private Coroutine _shoot;
-
-    void Start()
+    private void Start()
     {
-        StartCoroutine(Shoot());
+        if (_target != null)
+            StartCoroutine(ShootRoutine());
     }
 
-    private IEnumerator Shoot()
+    private IEnumerator ShootRoutine()
     {
-        bool isWorking = enabled;
-
-        while (isWorking)
+        while (enabled)
         {
-            Vector3 direction = (_target.position - transform.position).normalized;
-            Bullet bullet = Instantiate(_prefab, transform.position + direction, Quaternion.identity);
+            if (_target != null)
+            {
+                Vector3 direction = (_target.position - transform.position).normalized;
+                Bullet bullet = Instantiate(_prefab, transform.position + direction, Quaternion.identity);
 
-            bullet.GetComponent<Rigidbody>().transform.up = direction;
-            bullet.GetComponent<Rigidbody>().velocity = direction * _number;
+                bullet.Init(direction);
+            }
 
             yield return new WaitForSeconds(_timeWaitShooting);
         }

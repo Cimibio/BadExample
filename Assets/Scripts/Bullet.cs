@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Mover))]
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Mover _mover;
+
+    private void Awake()
     {
-        
+        _mover = GetComponent<Mover>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Init(Vector3 direction)
     {
-        
+        _mover.SetDirection(direction);
     }
 }
