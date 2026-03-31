@@ -25,7 +25,7 @@ public class Mover : MonoBehaviour
         }
     }
 
-    public void SetTarget(Vector3 target)
+    public void SetMovePoint(Vector3 target)
     {
         _targetPosition = target;
         transform.forward = target - transform.position;

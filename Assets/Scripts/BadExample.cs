@@ -45,6 +45,6 @@ public class GoPlaces : MonoBehaviour
     private void SendToCurrentPlace()
     {
         if (_places.Length > 0)
-            _mover.SetTarget(_places[_placeIndex].position);
+            _mover.SetMovePoint(_places[_placeIndex].position);
     }
 }
