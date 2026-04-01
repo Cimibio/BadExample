@@ -1,17 +1,22 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Mover))]
+[RequireComponent(typeof(Rigidbody))]
 public class Bullet : MonoBehaviour
 {
-    private Mover _mover;
+    [SerializeField] private float _speed = 100f;
 
+    private Rigidbody _rigidbody;
+    
     private void Awake()
     {
-        _mover = GetComponent<Mover>();
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     public void Init(Vector3 direction)
     {
-        _mover.SetDirection(direction);
+        transform.up = direction;
+
+        if (_rigidbody != null)
+            _rigidbody.velocity = direction.normalized * _speed;
     }
 }

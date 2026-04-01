@@ -186,8 +186,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeWaitShooting: 1
-  _prefab: {fileID: 2946749000029419873, guid: fa9b59bb933737848a37f40883a30dea, type: 3}
-  _target: {fileID: 882101404}
+  _prefab: {fileID: 7962841294438439569, guid: 176e67cb9e335224e966cf446c849f65, type: 3}
+  _target: {fileID: 409378629}
 --- !u!135 &87108113
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -351,6 +351,8 @@ GameObject:
   - component: {fileID: 409378625}
   - component: {fileID: 409378624}
   - component: {fileID: 409378623}
+  - component: {fileID: 409378630}
+  - component: {fileID: 409378631}
   m_Layer: 0
   m_Name: Walker
   m_TagString: Untagged
@@ -370,7 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5058959b76c79e4c8fc18d2df409fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _allPlaces: {fileID: 1697260689}
+  _wayPoints: {fileID: 1697260689}
 --- !u!114 &409378624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,6 +386,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
+  _rigidbody: {fileID: 0}
+  _movePointPosition: {x: 0, y: 0, z: 0}
+  _hasTarget: 0
+  _minDistance: 0.1
 --- !u!54 &409378625
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -392,7 +398,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 409378622}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -499,6 +505,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &409378630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409378622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9c555707aead94682bb38d239f215a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeWaitShooting: 0.3
+  _prefab: {fileID: 7962841294438439569, guid: 176e67cb9e335224e966cf446c849f65, type: 3}
+  _target: {fileID: 882101404}
+--- !u!114 &409378631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409378622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 860c32563f6bbbf4caa82f7fd3720b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 5
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

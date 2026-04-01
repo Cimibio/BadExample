@@ -1,17 +1,17 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Mover))]
-public class GoPlaces : MonoBehaviour
+[RequireComponent(typeof(PatrolMover))]
+public class Patroler : MonoBehaviour
 {
-    [SerializeField] private Transform _allPlaces;
+    [SerializeField] private Transform _wayPoints;
 
-    private Mover _mover;
+    private PatrolMover _mover;
     private int _placeIndex = 0;
     private Transform[] _places;
 
     private void Awake()
     {
-        _mover = GetComponent<Mover>();
+        _mover = GetComponent<PatrolMover>();
     }
     private void OnEnable()
     {
@@ -20,13 +20,13 @@ public class GoPlaces : MonoBehaviour
 
     private void Start()
     {
-        if (_allPlaces == null || _allPlaces.childCount == 0)
+        if (_wayPoints == null || _wayPoints.childCount == 0)
             return;
 
-        _places = new Transform[_allPlaces.childCount];
+        _places = new Transform[_wayPoints.childCount];
 
-        for (int i = 0; i < _allPlaces.childCount; i++)
-            _places[i] = _allPlaces.GetChild(i);
+        for (int i = 0; i < _places.Length; i++)
+            _places[i] = _wayPoints.GetChild(i);
 
         SendToCurrentPlace();
     }
@@ -38,7 +38,7 @@ public class GoPlaces : MonoBehaviour
 
     private void GetNextPlace()
     {
-        _placeIndex = (_placeIndex + 1) % _places.Length;
+        _placeIndex = ++_placeIndex % _places.Length;
         SendToCurrentPlace();
     }
 
